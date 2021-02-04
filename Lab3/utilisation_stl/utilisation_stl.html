@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="GLO-2100 Algorithmes et structures de données" />
+  <title>Laboratoire 3</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  /*
+   * I add this to html files generated with pandoc.
+   */
+  
+  html {
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    color: #444;
+    font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 1em;
+    margin: auto;
+    max-width: 42em;
+    background: #fefefe;
+  }
+  
+  a {
+    color: #0645ad;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #0b0080;
+  }
+  
+  a:hover {
+    color: #06e;
+  }
+  
+  a:active {
+    color: #faa700;
+  }
+  
+  a:focus {
+    outline: thin dotted;
+  }
+  
+  *::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  *::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #000;
+  }
+  
+  a::-moz-selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  a::selection {
+    background: rgba(255, 255, 0, 0.3);
+    color: #0645ad;
+  }
+  
+  p {
+    margin: 1em 0;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #111;
+    line-height: 125%;
+    margin-top: 2em;
+    font-weight: normal;
+  }
+  
+  h4, h5, h6 {
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  h4 {
+    font-size: 1.2em;
+  }
+  
+  h5 {
+    font-size: 1em;
+  }
+  
+  h6 {
+    font-size: 0.9em;
+  }
+  
+  blockquote {
+    color: #666666;
+    margin: 0;
+    padding-left: 3em;
+    border-left: 0.5em #EEE solid;
+  }
+  
+  hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+  }
+  
+  pre, code, kbd, samp {
+    color: #000;
+    font-family: monospace, monospace;
+    _font-family: 'courier new', monospace;
+    font-size: 0.98em;
+  }
+  
+  pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  b, strong {
+    font-weight: bold;
+  }
+  
+  dfn {
+    font-style: italic;
+  }
+  
+  ins {
+    background: #ff9;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  mark {
+    background: #ff0;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2em;
+  }
+  
+  li p:last-child {
+    margin-bottom: 0;
+  }
+  
+  ul ul, ol ol {
+    margin: .3em 0;
+  }
+  
+  dl {
+    margin-bottom: 1em;
+  }
+  
+  dt {
+    font-weight: bold;
+    margin-bottom: .8em;
+  }
+  
+  dd {
+    margin: 0 0 .8em 2em;
+  }
+  
+  dd:last-child {
+    margin-bottom: 0;
+  }
+  
+  img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+  }
+  
+  figure {
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+  }
+  
+  figure img {
+    border: none;
+    margin: 0 auto;
+  }
+  
+  figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 0 0 .8em;
+  }
+  
+  table {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  
+  table th {
+    padding: .2em 1em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+  }
+  
+  table td {
+    padding: .2em 1em;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    vertical-align: top;
+  }
+  
+  .author {
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  @media only screen and (min-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  @media print {
+    * {
+      background: transparent !important;
+      color: black !important;
+      filter: none !important;
+      -ms-filter: none !important;
+    }
+  
+    body {
+      font-size: 12pt;
+      max-width: 100%;
+    }
+  
+    a, a:visited {
+      text-decoration: underline;
+    }
+  
+    hr {
+      height: 1px;
+      border: 0;
+      border-bottom: 1px solid black;
+    }
+  
+    a[href]:after {
+      content: " (" attr(href) ")";
+    }
+  
+    abbr[title]:after {
+      content: " (" attr(title) ")";
+    }
+  
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+      content: "";
+    }
+  
+    pre, blockquote {
+      border: 1px solid #999;
+      padding-right: 1em;
+      page-break-inside: avoid;
+    }
+  
+    tr, img {
+      page-break-inside: avoid;
+    }
+  
+    img {
+      max-width: 100% !important;
+    }
+  
+    @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+  }
+  
+    @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+  }
+  
+    p, h2, h3 {
+      orphans: 3;
+      widows: 3;
+    }
+  
+    h2, h3 {
+      page-break-after: avoid;
+    }
+  }
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Laboratoire 3</h1>
+<h2 class="author">GLO-2100 Algorithmes et structures de données</h2>
+<h3 class="date">Jonathan Gingras</h3>
+</div>
+<h1 id="la-stl-standard-template-library"><span class="header-section-number">1</span> La STL : standard template library</h1>
+<h2 id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<p>La STL contient plusieurs classes et fonctions utilitaires.</p>
+<p>Nous allons principalement nous concentrer sur les conteneurs, car ces derniers implémentent des structures de données standards que vous verrez en classe.</p>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/stl/">Références des conteneurs</a></li>
+</ul>
+<h2 id="namespace-std"><span class="header-section-number">1.2</span> Namespace <code>std</code></h2>
+<p>L’intégralité de la STL se trouve dans le namespace <code>std</code>.</p>
+<p>Par exemple:</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>vector&lt;...&gt;
+<span class="bu">std::</span>list&lt;...&gt;
+<span class="bu">std::</span>map&lt;...&gt;
+<span class="bu">std::</span>set&lt;...&gt;</code></pre></div>
+<p>etc.</p>
+<h2 id="mémoire"><span class="header-section-number">1.3</span> Mémoire</h2>
+<p>L’allocation de la mémoire par les conteneurs de la STL utilise des classes qu’on appelle les allocateurs, qui allouent la mémoire sur le tas.</p>
+<p>Vous n’avez donc pas besoin de gérer la mémoire vous même si vous storer des objets par valeur.</p>
+<p>Mais n’oublier pas de libérer la mémoire si vous storez des pointeurs!</p>
+<h2 id="stdvector"><span class="header-section-number">1.4</span> <code>std::vector</code></h2>
+<p>La classe vector est une classe utilitaire permettant de manipuler un vecteur d’éléments en mémoire contiguë.</p>
+<p>Par exemple:</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; v; <span class="co">// vecteur de int</span>
+
+v.push_back(<span class="dv">7</span>); <span class="co">// ajoute l&#39;élément 7 à v</span>
+
+v[<span class="dv">0</span>]; <span class="co">// accède à l&#39;élément à l&#39;index 0</span></code></pre></div>
+<p>Attention à ne pas accéder à un indice qui n’existe pas (qui dépasse la mémoire allouée), vous risquer d’accéder à de la mémoire illégale et faire planter le programme.</p>
+<h2 id="stdlist"><span class="header-section-number">1.5</span> <code>std::list</code></h2>
+<p>Une liste est une liste doublement chaînée. Elle est utile lorsque que vous n’avez pas énormément d’éléments et qu’ils n’ont pas besoin d’être contiguës en mémoire.</p>
+<p>Par exemple:</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>list&lt;<span class="dt">int</span>&gt; l; <span class="co">// liste de int</span>
+
+l.push_back(<span class="dv">7</span>);
+<span class="co">// ajoute un élément 7 à la fin</span>
+
+l.push_front(<span class="dv">7</span>);
+<span class="co">// ajoute un élément 7 au début de la liste</span></code></pre></div>
+<p>Une liste n’a pas d’opérateur [], car cet opérateur signifie l’accès contiguë.</p>
+<h2 id="les-itérateurs"><span class="header-section-number">1.6</span> Les itérateurs</h2>
+<p>Pour itérer sur les éléments d’un conteneur de la STL, on utilise les classes membres <code>iterator</code>.</p>
+<p>Par exemple:</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; v {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};
+
+<span class="cf">for</span>(<span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt;::iterator it = v.begin();
+    it != v.end(); ++it) {
+  <span class="bu">std::</span>cout &lt;&lt; *it &lt;&lt; <span class="bu">std::</span>end;
+}</code></pre></div>
+<h2 id="les-itérateurs-suite"><span class="header-section-number">1.7</span> Les itérateurs (suite)</h2>
+<ul>
+<li>opérateur ++ pour avancer au prochain élément</li>
+<li>begin(): un itérateur vers le premier éléments</li>
+<li>end(): un itérateur vers <em>après</em> le dernier, donc ne pas le déréférencer! utile principalement pour utiliser <code>!=</code> sur lui.</li>
+<li>la déréférence (<code>*</code>) d’un itérateur est la référence vers l’élément itéré</li>
+</ul>
+<h2 id="les-itérateurs-raccourcis-en-c11"><span class="header-section-number">1.8</span> Les itérateurs (raccourcis en C++11)</h2>
+<p>En C++11, il existe un raccourcis: les <code>for-range loops</code></p>
+<p>Par exemple (même effet que page précédente):</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; v {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>};
+
+<span class="cf">for</span>(<span class="dt">int</span> &amp;i : v) {
+  <span class="bu">std::</span>cout &lt;&lt; i &lt;&lt; <span class="bu">std::</span>end;
+}</code></pre></div>
+<h2 id="les-itérateurs-raccourcis-en-c11-suite"><span class="header-section-number">1.9</span> Les itérateurs (raccourcis en C++11) (suite)</h2>
+<ul>
+<li>La déréférence est automatique dans les for-range loops.</li>
+<li>Notez que <code>i</code>, ici, est une référence (&amp;), car on ne veut pas de construction par copie de chaque élément, donc on écrit un (&amp;).</li>
+<li>Le dernier point reste valide si vous utilisez l’inférence de type («<code>auto &amp;</code>» et non «<code>auto</code>»).</li>
+<li>Vous pouvez aussi ajouter un <code>const</code> devant le type si vous ne modifiez pas les itérés.</li>
+</ul>
+<h2 id="exercice"><span class="header-section-number">1.10</span> Exercice</h2>
+<p>Voir <code>src/iterating.cc</code>.</p>
+<p>Voir <code>src/iterable_class.cc</code>.</p>
+<h2 id="considérations-importantes-sur-lhéritage"><span class="header-section-number">1.11</span> Considérations importantes sur l’héritage</h2>
+<ul>
+<li><p>N’héritez <strong>pas</strong> des classes de la STL!</p></li>
+<li><p>Ça va compiler, mais si vous vous servez de façon polymorphique de ce genre de classe, vous allez leaker : <strong>aucun destructeur</strong> des conteneurs de la STL <strong>n’est virtuel</strong>.</p></li>
+<li><p>Allez-y par composition à la place.</p></li>
+</ul>
+<h2 id="autres-structures-de-données"><span class="header-section-number">1.12</span> Autres structures de données</h2>
+<p>D’autres structures de données spécialisées existent dans la STL:</p>
+<ul>
+<li><code>std::map</code> : association clé-valeur, généralement implémenté en arbre</li>
+<li><code>std::unordered_map</code> (C++11) : association clé-valeur, implémenté en table de hashage</li>
+<li><code>std::set</code> : ensemble, généralement implémenté en arbre</li>
+<li><code>std::unordered_set</code> (C++11) : ensemble, implémenté en table de hashage</li>
+<li><code>std::stack</code> : pile FILO, non itérable</li>
+<li><code>std::queue</code> : file FIFO, non itérable</li>
+</ul>
+<h2 id="stdmap"><span class="header-section-number">1.13</span> <code>std::map</code></h2>
+<p>Pour instantier une <code>std::map</code>, il faut sélectionner deux types (clé et valeur). Le type clé doit implémenter l’opérateur <code>&lt;</code> pour ses comparaisons internes.</p>
+<p>Par exemple, une <code>std::map&lt;std::string, int&gt;</code> associe des strings à des ints.</p>
+<p>Seulement une valeur peut être associée à une clé.</p>
+<p>Si on veut avoir plusieurs valeurs par clé, il faut utiliser la classe <code>std::multimap</code>.</p>
+<h2 id="exemple-stdmap"><span class="header-section-number">1.14</span> Exemple <code>std::map</code></h2>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="bu">std::</span>map&lt;<span class="bu">std::</span>string, <span class="dt">int</span>&gt; map;
+
+map[<span class="st">&quot;one&quot;</span>] = <span class="dv">1</span>;
+<span class="co">// assigne 1 au string &quot;one&quot;</span>
+
+<span class="dt">int</span> two = map[<span class="st">&quot;two&quot;</span>];
+<span class="co">// assigne le int two au int assigné au string &quot;two&quot;</span>
+<span class="co">// dans ce cas, ce sera 0, car l&#39;opérateur []</span>
+<span class="co">// doit toujours retourner une référence valide</span>
+<span class="co">// même si elle n&#39;a pas été assignée avant</span></code></pre></div>
+<h2 id="exemple-stdmap-suite"><span class="header-section-number">1.15</span> Exemple <code>std::map</code> (suite)</h2>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp">map.at(<span class="st">&quot;tree&quot;</span>);
+<span class="co">// va lancer une exception, car .at agit</span>
+<span class="co">// comme l&#39;opérateur [], mais ne crée pas l&#39;élément</span>
+<span class="co">// s&#39;il n&#39;existe pas</span>
+
+<span class="bu">std::</span>map&lt;<span class="bu">std::</span>string, <span class="dt">int</span>&gt; map2 {
+  {<span class="st">&quot;one&quot;</span>, <span class="dv">1</span>},
+  {<span class="st">&quot;two&quot;</span>, <span class="dv">2</span>},
+  {<span class="st">&quot;three&quot;</span>, <span class="dv">3</span>}
+};
+<span class="co">// on peut initialiser une map avec </span>
+<span class="co">// une liste de valeurs de paires en C++11</span></code></pre></div>
+<h2 id="exemple-stdmap-suite-1"><span class="header-section-number">1.16</span> Exemple <code>std::map</code> (suite)</h2>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="cf">for</span>(<span class="kw">auto</span> &amp;pair: map2) {
+  <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;key: &quot;</span> &lt;&lt; pair.first 
+  &lt;&lt; <span class="st">&quot;, &quot;</span> &lt;&lt; <span class="st">&quot;value: &quot;</span> &lt;&lt; pair.second;
+}
+<span class="co">// on peut itérer sur une map avec une</span>
+<span class="co">// std::pair</span></code></pre></div>
+<h2 id="exemple-stdunordered_map"><span class="header-section-number">1.17</span> Exemple <code>std::unordered_map</code></h2>
+<p>Une <code>std::unordered_map</code> s’utilise comme une <code>std::map</code>, toutefois, elle est implémentée en table de hachage et non en arbre de recherche.</p>
+<p>Elle est donc plus rapide en accès direct, mais plus lente en itération.</p>
+<p>Le type clé ici n’a pas besoin d’implémenter l’opérateur <code>&lt;</code>, mais il doit spécialiser le type <code>std::hash</code> et y implémenter l’opérateur parenthèse (qui représente la fonction de hachage).</p>
+<h2 id="exemple-stdstr"><span class="header-section-number">1.18</span> Exemple <code>std::str</code></h2>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;unordered_map&gt;</span>
+
+<span class="kw">class</span> MyClass {};
+
+<span class="kw">namespace</span> std {
+<span class="kw">template</span> &lt;&gt;
+<span class="kw">struct</span> hash&lt;MyClass&gt; {
+  <span class="dt">size_t</span> <span class="kw">operator</span> () () {
+    <span class="cf">return</span> <span class="dv">0</span>; 
+    <span class="co">// mauvaise fonction de hashage,</span>
+    <span class="co">// mais fonctionne</span>
+  }
+};
+}</code></pre></div>
+<h2 id="exercice-1"><span class="header-section-number">1.19</span> Exercice</h2>
+<p>Voir <code>src/maps.cc</code></p>
+<p>Voir <code>src/stacks_queues.cc</code></p>
+<h2 id="construction-par-copie"><span class="header-section-number">1.20</span> Construction par copie</h2>
+<p>Lors du dernier lab, on a vu que l’a construction par copie coûte cher sur les conteneurs de la STL, car leurs constructeurs par copie implémentent une copie profonde de leur contenu.</p>
+<p>Nous allons faire des comparaisons de temps pour illustrer la situation.</p>
+<h2 id="exercice-2"><span class="header-section-number">1.21</span> Exercice</h2>
+<p>Voir <code>src/time_comparison.cc</code></p>
+</body>
+</html>
