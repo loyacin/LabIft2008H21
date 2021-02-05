@@ -1,0 +1,7 @@
+add_executable(vectorTesteurEmptyVector VectorTesteurEmptyVector.cpp)
+add_test(VectorTesteurEmptyVector.cpp vectorTesteurEmptyVector)
+target_link_libraries(vectorTesteurEmptyVector ${GTEST_LIBRARIES})
+
+add_executable(vectorTesteurVector1 VectorTesteurVector1.cpp)
+add_test(VectorTesteurVector1.cpp vectorTesteurVector1)
+target_link_libraries(vectorTesteurVector1 ${GTEST_LIBRARIES})
