@@ -8,6 +8,6 @@ struct Date
     int annee;
 };
 
-void incrementDate(const Date &date);
+static Date* incrementDate(const Date &date);
 
 #endif //LAB3_INCREMENTDATE_H

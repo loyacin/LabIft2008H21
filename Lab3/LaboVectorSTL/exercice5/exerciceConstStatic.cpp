@@ -15,18 +15,20 @@ using namespace std;
 
 struct Point
 {
-	float x, y;
+	static float x, y;
+	static int nbFois;
 	Point() {
 		x = 0.0f;
 		y = 0.0f;
+		nbFois = 0;
 	}
 
-	float distanceDeLOrigine(Point p_point) const {
+	float distanceDeLOrigine(const Point& p_point) const {
 		return sqrt(p_point.x * p_point.x + p_point.y * p_point.y);
 	}
 
-	float distanceDeLOrigine() {
-		int nbFois = 0;
+	float distanceDeLOrigine() const {
+	    nbFois++;
 		cout << "Cette fonction a été appelée " << nbFois << " fois." << endl;
 		return sqrt(x * x + y * y);
 	}
