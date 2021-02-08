@@ -1,0 +1,4 @@
+<map id="PileTest" name="PileTest">
+<area shape="rect" id="node4" href="$classlab04_1_1_pile.html" title="{lab04::Pile\&lt; Comparable \&gt;\n|&#45; m_cardinalite\l|+ Pile()\l+ Pile()\l+ ~Pile()\l+ empiler()\l+ depiler()\l+ estVide()\l+ taille()\l+ top()\l+ operator[]()\l+ operator=()\l+ verifieInvariant()\l&#45; _detruire()\l&#45; _copier()\l}" alt="" coords="123,299,293,573"/>
+<area shape="rect" id="node6" href="$classlab04_1_1_pile_1_1_noeud.html" title="Classe interne représentant un noeud (une position) dans la pile." alt="" coords="131,153,285,234"/>
+</map>
