@@ -8,7 +8,7 @@
  * Tests unitaires de la classe Graphe
  */
 
-#include "Graphe.h"
+#include "../main/Graphe.h"
 #include "gtest/gtest.h"
 #include <string>
 #include <algorithm>

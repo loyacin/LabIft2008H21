@@ -10,8 +10,8 @@
  */
 
 #include "gtest/gtest.h"
-#include "Pile.h"
-#include "Comparable.h"
+#include "../main/Pile.h"
+#include "../main/Comparable.h"
 
 static const Comparable c1(1, "bleu");
 static const Comparable c2(2, "rouge");

@@ -12,9 +12,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Source inclusion
 ########################
 set(SOURCE_FILES
+        src/main/ContratException.cpp
+        src/main/ContratException.h
         src/main/File.hpp
-        src/main/File.h)
-add_executable(Lab3 ${SOURCE_FILES})
+        src/main/File.h
+        src/main/main.cpp)
+add_executable(File ${SOURCE_FILES})
 
 
 ########################
@@ -33,7 +36,7 @@ if(BUILD_TESTING)
 
     include_directories(${CMAKE_CURRENT_BINARY_DIR}/extern/include)
     link_directories(${CMAKE_CURRENT_BINARY_DIR}/extern/lib)
-    set(GTEST_LIBRARIES gtest gmock gtest_main gmock_main pthread)
+    set(GTEST_LIBRARIES pthread gtest gmock gtest_main gmock_main)
 
     enable_testing()
 

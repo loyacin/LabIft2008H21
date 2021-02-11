@@ -10,7 +10,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "File.h"
+#include "../main/File.h"
 #include <sstream>
 
 using namespace lab04;

@@ -12,9 +12,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Source inclusion
 ########################
 set(SOURCE_FILES
+        src/main/main.cpp
+        src/main/ContratException.cpp
+        src/main/ContratException.h
         src/main/Graphe.hpp
         src/main/Graphe.h)
-add_executable(Lab3 ${SOURCE_FILES})
+add_executable(GrapheVecteur ${SOURCE_FILES})
 
 
 ########################
