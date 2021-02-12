@@ -30,7 +30,7 @@ template<typename T>
 class Pile
 {
 public:
-	Pile();
+	Pile() ;
 	Pile(const Pile &);
 	~Pile();
 

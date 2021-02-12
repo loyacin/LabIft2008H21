@@ -61,6 +61,7 @@ private:
 	// Méthodes privées
 	void verifieInvariant() const;
 
+    void isVertexNumberValid(unsigned int vertexNumber) const;
 };
 
 } //Fin du namespace

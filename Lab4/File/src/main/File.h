@@ -50,12 +50,13 @@ public:
 	void verifieInvariant() const;
 
 private:
-	T *m_tab; /*!< Tableau contenant la file*/
+	T *m_tab; /*!< Tableau contenant la file*/;
 	int m_tete; /*!< Tete de la file*/
 	int m_queue; /*!< Queue de la file (sur la position après le dernier élément)*/
 	int m_tailleMax; /*!< Capacité courante de la file*/
 	int m_cardinalite; /*!< Nombre d'éléments effectifs dans la file*/
 	static const int MAX_FILE = 100; /*!< Capacité de la file par défaut*/
+    void destruct();
 };
 } //Fin du namespace
 
