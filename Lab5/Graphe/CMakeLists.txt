@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(File)
+project(Graphe)
 
 
 ########################
@@ -17,7 +17,7 @@ set(SOURCE_FILES
         src/main/Graphe.hpp
         src/main/Graphe.h
         src/main/main.cpp)
-add_executable(File ${SOURCE_FILES})
+add_executable(Graphe ${SOURCE_FILES})
 
 
 ########################
