@@ -9,7 +9,7 @@
 
 #include <string>
 #include "gtest/gtest.h"
-#include "Graphe.h"
+#include "../main/Graphe.h"
 using namespace std;
 using namespace labGrapheAlgorithmes;
 

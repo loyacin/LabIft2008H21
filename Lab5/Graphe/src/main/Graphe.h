@@ -68,6 +68,20 @@ private:
 
 	// Méthodes privées
 	void verifieInvariant() const;
+    bool canVisitEveryNeighbors() const;
+    Graphe <T> createNonOrientedGraph() const;
+    std::vector<unsigned int> getInputOrderForAllVertex() const;
+
+    std::queue<unsigned int> getSources(std::vector<unsigned int> inputOrders) const;
+
+    template<typename C>
+    std::vector<unsigned int> getPath(unsigned int debut, C &) const;
+    unsigned int getNextElement(const std::queue<unsigned int> &queue) const;
+    unsigned int getNextElement(const std::stack<unsigned int> &stack) const;
+    template<typename C>
+    void addUnmarkedNeighborToContainer(C &container, std::vector<bool> &marks, T elementToTreat) const;
+    template<typename C>
+    void treatNextElement(C &container, std::vector<bool> &marks, std::vector<unsigned int> &inDepthPath) const;
 };
 
 } //Fin du namespace

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include "ContratException.h"
+#include "Graphe.h"
 
 
 namespace labGrapheAlgorithmes {
@@ -327,12 +328,6 @@ void Graphe<T>::verifieInvariant() const {
 /**
  * \brief Effectue un parcours en profondeur du graphe
  *
- * Retourne le résultat du parcours en profondeur du graphe. Dans notre solution,
- * pour éviter de dupliquer du code, nous utilisons des fonctions utilitaires pour
- * utiliser la même fonction générique de parcours acceptant les deux types de conteneurs
- * (pile ou file) nécessaires. Notez que vous pouviez dupliquer le code dans votre solution,
- * car la nôtre est moins évidente à imaginer et implémenter.
- *
  * \param[in] p_debut Le numéro du sommet de départ
  * \return Le vecteur contenant le résultat du parcours
  * \pre Le numéro du sommet correspond à un sommet valide
@@ -341,16 +336,13 @@ void Graphe<T>::verifieInvariant() const {
  */
 template <typename T>
 std::vector<unsigned int> Graphe<T>::parcoursProfondeur(unsigned int p_debut) const {
+    PRECONDITION(p_debut < this->m_nbSommets);
+    std::stack<unsigned int> vertexToVisit;
+    return this->template getPath(p_debut, vertexToVisit);
 }
 
 /**
  * \brief Effectue un parcours en largeur du graphe
- *
- * Retourne le résultat du parcours en largeur du graphe. Dans notre solution,
- * pour éviter de dupliquer du code, nous utilisons des fonctions utilitaires pour
- * utiliser la même fonction générique de parcours acceptant les deux types de conteneurs
- * (pile ou file) nécessaires. Notez que vous pouviez dupliquer le code dans votre solution,
- * car la nôtre est moins évidente à imaginer et implémenter.
  *
  * \param[in] p_debut Le numéro du sommet de départ
  * \return Le vecteur contenant le résultat du parcours
@@ -360,14 +352,149 @@ std::vector<unsigned int> Graphe<T>::parcoursProfondeur(unsigned int p_debut) co
  */
 template <typename T>
 std::vector<unsigned int> Graphe<T>::parcoursLargeur(unsigned int p_debut) const {
+    PRECONDITION(p_debut < this->m_nbSommets);
+    std::queue<unsigned int> vertexToVisit;
+    return getPath(p_debut, vertexToVisit);
+}
+
+/**
+ * Cette méthode teste si le graphe est FAIBLEMENT connexe.
+ * @tparam T type des noms des sommets.
+ * @return true si le graphe est faiblement connexe.
+ *         false sinon.
+ */
+template <typename T>
+bool Graphe<T>::estConnexe() const
+{
+    return this->m_nbSommets == 0 || canVisitEveryNeighbors();
 }
 
 template <typename T>
-bool Graphe<T>::estConnexe() const {
+bool Graphe<T>::canVisitEveryNeighbors() const
+{
+    Graphe nonOrientedGraph = this->createNonOrientedGraph();
+    std::vector<unsigned int> path = nonOrientedGraph.parcoursProfondeur(0);
+    return path.size() == this->m_nbSommets;
+}
+
+template <typename T>
+Graphe<T> Graphe<T>::createNonOrientedGraph() const
+{
+    Graphe<T> nonOriented(*this);
+    for (auto i = 0; i < nonOriented.reqNbSommets(); i++)
+    {
+        for (auto neighbor : nonOriented.listerSommetsAdjacents(i))
+        {
+            if (!nonOriented.arcExiste(neighbor, i))
+            {
+                nonOriented.ajouterArc(neighbor, i);
+            }
+        }
+    }
+    return nonOriented;
 }
 
 template <typename T>
 std::vector<unsigned int> Graphe<T>::triTopologique() const {
+    std::vector<unsigned int> solution;
+
+    std::vector<unsigned> inputOrders = this->getInputOrderForAllVertex();
+    std::queue<unsigned int> queue = getSources(inputOrders);
+
+    while(!queue.empty())
+    {
+        auto elementToTreat = queue.front();
+        queue.pop();
+
+        solution.push_back(elementToTreat);
+
+        for (auto neighbor : this->listerSommetsAdjacents(elementToTreat))
+        {
+            inputOrders[neighbor]--;
+            if (inputOrders[neighbor] == 0)
+            {
+                queue.push(neighbor);
+            }
+        }
+    }
+
+    return solution;
+}
+
+template<typename T>
+std::vector<unsigned int> Graphe<T>::getInputOrderForAllVertex() const
+{
+    std::vector<unsigned int> inputOrders(this->m_nbSommets);
+    for (auto i = 0; i < this->m_nbSommets; i++)
+    {
+        inputOrders[i] = this->ordreEntreeSommet(i);
+    }
+    return inputOrders;
+}
+
+template<typename T>
+std::queue<unsigned int> Graphe<T>::getSources(std::vector<unsigned int> inputOrders) const
+{
+    std::queue<unsigned int> sources;
+    for (auto i = 0; i < this->m_nbSommets; i++)
+    {
+        if (inputOrders[i] == 0)
+        {
+            sources.push(i);
+        }
+    }
+    return sources;
+}
+
+template<typename T>
+template<typename C>
+std::vector<unsigned int> Graphe<T>::getPath(unsigned int p_debut, C & container) const
+{
+    std::vector<bool> marks(this->m_nbSommets, false);
+    container.push(p_debut);
+    marks[p_debut] = true;
+    std::vector<unsigned int> inDepthPath;
+    while(!container.empty())
+    {
+        treatNextElement(container, marks, inDepthPath);
+    }
+    return inDepthPath;
+}
+
+template<typename C>
+template<typename T>
+void Graphe<T>::treatNextElement(C &container, std::vector<bool> &marks, std::vector<unsigned int> &inDepthPath) const
+{
+    auto elementToTreat = getNextElement(container);
+    container.pop();
+    inDepthPath.push_back(elementToTreat);
+    addUnmarkedNeighborToContainer(container, marks, elementToTreat);
+}
+
+template<typename C>
+template<typename T>
+void Graphe<T>::addUnmarkedNeighborToContainer(C &container, std::vector<bool> &marks, T elementToTreat) const
+{
+    for (unsigned int neighbor : listerSommetsAdjacents(elementToTreat))
+    {
+        if (!marks[neighbor])
+        {
+            marks[neighbor] = true;
+            container.push(neighbor);
+        }
+    }
+}
+
+template<typename T>
+unsigned int Graphe<T>::getNextElement(const std::queue<unsigned int> & queue) const
+{
+    return queue.front();
+}
+
+template<typename T>
+unsigned int Graphe<T>::getNextElement(const std::stack<unsigned int> & stack) const
+{
+    return stack.top();
 }
 
 } //Fin du namespace
