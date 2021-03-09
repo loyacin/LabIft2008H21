@@ -1,5 +1,7 @@
 #include <cmath>
 #include "ContratException.h"
+#include "TableHachage.h"
+
 
 namespace labTableHachage {
 
@@ -59,6 +61,60 @@ std::ostream& operator<<(std::ostream& p_out,
 	p_source.afficher(p_out);
 	return p_out;
 }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    TableHachage<TypeClef, TypeElement, FoncteurHachage>::TableHachage(size_t)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage>::inserer(const TypeClef &, const TypeElement &)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage>::enlever(const TypeClef &)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    bool TableHachage<TypeClef, TypeElement, FoncteurHachage>::contient(const TypeClef &) const
+    {
+        return false;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    TypeElement TableHachage<TypeClef, TypeElement, FoncteurHachage>::element(const TypeClef &) const
+    {
+        return nullptr;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage>::rehacher()
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage>::vider()
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    int TableHachage<TypeClef, TypeElement, FoncteurHachage>::taille() const
+    {
+        return 0;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage>
+    double TableHachage<TypeClef, TypeElement, FoncteurHachage>::statistiques() const
+    {
+        return 0;
+    }
 
 } //Fin du namespace
 

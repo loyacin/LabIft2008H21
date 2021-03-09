@@ -14,10 +14,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
         src/main/ContratException.cpp
         src/main/ContratException.h
-        src/main/Graphe.hpp
-        src/main/Graphe.h
+        src/main/TableHachage.hpp
+        src/main/TableHachage.h
+        src/main/FoncteurHachage.hpp
         src/main/main.cpp)
-add_executable(Graphe ${SOURCE_FILES})
+add_executable(HachageQuadratique ${SOURCE_FILES})
 
 
 ########################

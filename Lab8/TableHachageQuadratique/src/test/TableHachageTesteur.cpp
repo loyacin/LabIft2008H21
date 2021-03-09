@@ -10,8 +10,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "TableHachage.h"
-#include "FoncteurHachage.hpp"
+#include "../main/TableHachage.h"
+#include "../main/FoncteurHachage.hpp"
 #include "gtest/gtest.h"
 
 using namespace std;

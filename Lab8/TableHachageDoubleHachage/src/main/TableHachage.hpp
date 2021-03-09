@@ -1,5 +1,7 @@
 #include <cmath>
 #include "ContratException.h"
+#include "TableHachage.h"
+
 
 namespace labTableHachage {
 
@@ -61,6 +63,61 @@ std::ostream& operator<<(std::ostream& p_out,
 	p_source.afficher(p_out);
 	return p_out;
 }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::TableHachage(size_t)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::inserer(const TypeClef &,
+                                                                                          const TypeElement &)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::enlever(const TypeClef &)
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    bool TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::contient(const TypeClef &) const
+    {
+        return false;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    TypeElement TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::element(const TypeClef & key) const
+    {
+        return nullptr;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::rehacher()
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    void TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::vider()
+    {
+
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    int TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::taille() const
+    {
+        return 0;
+    }
+
+    template<typename TypeClef, typename TypeElement, class FoncteurHachage1, class FoncteurHachage2>
+    double TableHachage<TypeClef, TypeElement, FoncteurHachage1, FoncteurHachage2>::statistiques() const
+    {
+        return 0;
+    }
 
 } //Fin du namespace
 
