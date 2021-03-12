@@ -112,9 +112,9 @@ private:
 	bool _estPremier(int) const;
 
     // À titre indicatif, voici les méthodes privées de la solution
-    /*
 	size_t _trouverPositionLibre(const TypeClef &);
 	size_t _trouverPositionClef(const TypeClef &) const;
+    /*
 	size_t _distribution(const TypeClef &) const;
 	bool _estVacante(size_t) const;
 	bool _estEffacee(size_t) const;
@@ -125,7 +125,11 @@ private:
 	void _reqEntreesActives(std::vector<EntreeHachage> &) const;
 	void _statistiques(const unsigned long &);
     */
-
+    size_t hashKeyWithCollisions(const TypeClef &key, long numberOfCollisions);
+    void inserer(const std::vector<EntreeHachage> &);
+    bool mustRehash();
+    template<class FoncteurHachage1, typename TypeElement, typename TypeClef, class FoncteurHachage2>
+    std::vector<EntreeHachage> getEntries();
 };
 } //Fin du namespace
 
