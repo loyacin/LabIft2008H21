@@ -14,6 +14,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
         src/main/ContratException.cpp
         src/main/ContratException.h
+        src/main/ArbreBinaire.h
+        src/main/ArbreBinaire.hpp
         src/main/main.cpp)
 add_executable(ArbreBinaire ${SOURCE_FILES})
 
