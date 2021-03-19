@@ -62,7 +62,7 @@ private:
 		 * \post Un noeud typique est intialisé
 		 */
 		Noeud(const E & p_element) :
-				m_data(p_element), m_gauche(0), m_droite(0) {
+				m_data(p_element), m_gauche(nullptr), m_droite(nullptr) {
 		}
 	};
 
@@ -75,11 +75,11 @@ private:
 	Noeud * _auxPereSym(constVecItr&, constVecItr&, constVecItr&, constVecItr&);
 
     // À titre indicatif, voici les méthodes privées de la solution
-    /*
 	Noeud * _auxPereSym(E *, int, int, E **);
 	void _listerEnOrdre(Noeud *, std::vector<E> &) const;
 	void _listerPreOrdre(Noeud *, std::vector<E> &) const;
 	void _listerPostOrdre(Noeud *, std::vector<E> &) const;
+    /*
 	void _auxCopier(Noeud *, Noeud*&);
 	void _auxDetruire(Noeud *&);
     */

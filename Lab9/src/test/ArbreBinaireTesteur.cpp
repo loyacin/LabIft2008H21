@@ -10,8 +10,8 @@
  */
 
 #include <iomanip>
-#include "ArbreBinaire.h"
 #include "gtest/gtest.h"
+#include "../main/ArbreBinaire.h"
 #include <iostream>
 
 using namespace std;
@@ -26,7 +26,7 @@ protected:
 		//    9         22
 		// 5    10
 		tabS = new int[5];
-		tabP = new int[5];
+		tabP = new int[5]; // int * (E *)
 
 		tabP[0] = 15;
 		tabP[1] = 9;
@@ -43,7 +43,7 @@ protected:
 		/*on marque l'origine de tabP*/
 		ptrOriDeTabP = tabP;
 
-		Arbre<int> ab(tabS, 0, 4, &tabP);
+		Arbre<int> ab(tabS, 0, 4, &tabP); // int ** (E **)
 		arb1 = ab;
 	}
 	virtual void TearDown() {
