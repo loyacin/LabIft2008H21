@@ -1,6 +1,19 @@
 #include <vector>
 #include "ContratException.h"
 
+/**Coq
+Arbre Binaire ::=
+        | Vide : Arbre Binaire
+        | Arbre: Element -> Arbre Binaire -> Arbre Binaire -> Arbre Binaire
+     Arbre non vide a au moins une feuille.
+Liste ::=
+        | Vide -> Liste
+        | Elem -> Liste -> Liste
+
+
+Naturel ::=
+        | Zero : Naturel
+        | S : Naturel -> Naturel*/
 
 namespace labParcoursArbre {
 
@@ -43,9 +56,15 @@ Arbre<E>::_auxPereSym(constVecItr& p_debutS, constVecItr& p_finS, constVecItr& p
 }
 
     template<typename E>
-    Arbre<E>::Arbre()
+    Arbre<E>::Arbre() : m_racine(nullptr)
     {
-
+        /**
+         * Optional - java 8
+         * Optional <T> ::=
+         *            | Empty : Optional
+         *            | Plein : T -> Optional
+         * maybe en haskell
+         */
     }
 
     template<typename E>
@@ -55,27 +74,51 @@ Arbre<E>::_auxPereSym(constVecItr& p_debutS, constVecItr& p_finS, constVecItr& p
     }
 
     template<typename E>
-    Arbre<E>::Arbre(const std::vector<E> &, const std::vector<E> &)
+    Arbre<E>::Arbre(const Arbre & treeToCopy)
     {
-
+        this->m_racine = copy(treeToCopy.m_racine);
     }
 
     template<typename E>
-    Arbre<E>::Arbre(const Arbre &)
+    Arbre<E>::Noeud Arbre<E>::copy(const Noeud & nodeToCopy)
     {
-
+        Noeud * newNode = nullptr;
+        if (nodeToCopy != nullptr)
+        {
+            newNode = new Noeud(nodeToCopy.m_data);
+            newNode->m_gauche = copy(nodeToCopy.m_gauche);
+            newNode->m_droite = copy(nodeToCopy.m_droite);
+        }
+        return newNode;
     }
 
     template<typename E>
     Arbre<E>::~Arbre()
     {
-
+        destruct(&this->m_racine);
     }
 
     template<typename E>
-    const Arbre &Arbre<E>::operator=(const Arbre &)
+    Arbre<E>::Noeud Arbre<E>::destruct(Noeud* & nodeToCopy)
     {
-        return <#initializer#>;
+        if (nodeToCopy != nullptr)
+        {
+            destruct(nodeToCopy->m_gauche);
+            destruct(nodeToCopy->m_droite);
+            delete nodeToCopy;
+            nodeToCopy = nullptr;
+        }
+    }
+
+    template<typename E>
+    const Arbre &Arbre<E>::operator=(const Arbre & treeToCopy)
+    {
+        if (this != &treeToCopy)
+        {
+            destruct(&this->m_racine);
+            this->m_racine = copy(treeToCopy.m_racine)
+        }
+        return this;
     }
 
     template<typename E>
@@ -119,7 +162,7 @@ Arbre<E>::_auxPereSym(constVecItr& p_debutS, constVecItr& p_finS, constVecItr& p
     template<typename E>
     void Arbre<E>::verifieInvariant() const
     {
-
+        // acyclique s'il existe une façon d'insérer un noeud.
     }
 
     template<typename E>
