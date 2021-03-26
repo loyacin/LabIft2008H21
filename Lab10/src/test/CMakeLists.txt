@@ -1,6 +1,5 @@
 set(SOURCE_FILES
-        ../main/ContratException.cpp
-        ../main/ContratException.h
+        ../main/HeapSort.hpp
         HeapSortTest.cpp)
 add_executable(heapSortTest ${SOURCE_FILES})
 

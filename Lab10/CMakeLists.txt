@@ -12,8 +12,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Source inclusion
 ########################
 set(SOURCE_FILES
-        src/main/ContratException.cpp
-        src/main/ContratException.h
         src/main/HeapSort.hpp
         src/main/main.cpp src/test/HeapSortTest.cpp)
 add_executable(HeapSort ${SOURCE_FILES})
