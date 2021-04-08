@@ -1,0 +1,19 @@
+<map id="labArbreAVL::Arbre::enleverAVL" name="labArbreAVL::Arbre::enleverAVL">
+<area shape="rect" id="node2" href="$classlab_arbre_a_v_l_1_1_arbre.html#a38c639dab9f0a0946f352576274b2270" title="Fonction récursive pour enlever un élément en gardant l&#39;arbre AVL. " alt="" coords="187,465,320,506"/>
+<area shape="rect" id="node17" href="$classlab_arbre_a_v_l_1_1_arbre.html#afeb9b894c1de05b9f79735febfcca56e" title="Déterminer si un élément est dans l&#39;arbre. " alt="" coords="187,556,320,597"/>
+<area shape="rect" id="node3" href="$classlab_arbre_a_v_l_1_1_arbre.html#a8c37129a447c5af3d9b6119be7ae538a" title="Indique si le sous&#45;arbre à deux fils. " alt="" coords="371,497,504,538"/>
+<area shape="rect" id="node4" href="$classlab_arbre_a_v_l_1_1_arbre.html#add2d09e6484d927daf03dcc2073a603d" title="Balancer un sous&#45;arbre. " alt="" coords="368,314,507,356"/>
+<area shape="rect" id="node6" href="$classlab_arbre_a_v_l_1_1_arbre.html#aab6717939a6600e1187885256ebe2603" title="Retourne la hauteur d&#39;un sous&#45;arbre. " alt="" coords="1269,176,1403,217"/>
+<area shape="rect" id="node13" href="$classlab_arbre_a_v_l_1_1_arbre.html#aa5f2e1d257ea1c8b61d48b7cb0f9f976" title="Mettre à jour la hauteur d&#39;un noeud. " alt="" coords="1032,434,1213,476"/>
+<area shape="rect" id="node16" href="$classlab_arbre_a_v_l_1_1_arbre.html#abe574d79b8ab222428098cba1101eea6" title="Fonction récursive pour atteindre la donnée minimum en partant du noeud passé en paramètre. " alt="" coords="371,432,504,473"/>
+<area shape="rect" id="node5" href="$classlab_arbre_a_v_l_1_1_arbre.html#ac9a28af37f2de697d2e6ba183ec83461" title="Retourne l&#39;amplitude du débalancement d&#39;un sous&#45;arbre. " alt="" coords="1024,58,1221,100"/>
+<area shape="rect" id="node7" href="$classlab_arbre_a_v_l_1_1_arbre.html#a9833b34e5d4bada3a48d9fb676f76fb3" title="Indique si le sous&#45;arbre est débalancé à droite. " alt="" coords="802,117,969,158"/>
+<area shape="rect" id="node8" href="$classlab_arbre_a_v_l_1_1_arbre.html#adb0455c73f304061ede10e8a90c5be34" title="Indique si le sous&#45;arbre est débalancé à gauche. " alt="" coords="1034,176,1211,217"/>
+<area shape="rect" id="node9" href="$classlab_arbre_a_v_l_1_1_arbre.html#a912426ada2bebc35b9c92f5ea0bcc108" title="Indique si le sous&#45;arbre penche à droite. " alt="" coords="795,234,976,276"/>
+<area shape="rect" id="node10" href="$classlab_arbre_a_v_l_1_1_arbre.html#a2568c962d5c525e77b149ed57fb069bd" title="Indique si le sous&#45;arbre penche à gauche. " alt="" coords="555,285,747,326"/>
+<area shape="rect" id="node11" href="$classlab_arbre_a_v_l_1_1_arbre.html#a2c89d28958ab8f81befde656e7cf507d" title="Effectuer la transformation zig&#45;zag droite. " alt="" coords="584,402,717,444"/>
+<area shape="rect" id="node12" href="$classlab_arbre_a_v_l_1_1_arbre.html#a7efc524d7dbecde893fb3ca9c045eceb" title="Effectuer la transformation zig&#45;zig droite. " alt="" coords="819,402,952,444"/>
+<area shape="rect" id="node14" href="$classlab_arbre_a_v_l_1_1_arbre.html#ae2033c75d70e85c2692ae71472966ba8" title="Effectuer la transformation zig&#45;zig gauche. " alt="" coords="819,468,952,509"/>
+<area shape="rect" id="node15" href="$classlab_arbre_a_v_l_1_1_arbre.html#a917e537251a2ce12eeef59a4df5f0a61" title="Effectuer la transformation zig&#45;zag gauche. " alt="" coords="584,468,717,509"/>
+<area shape="rect" id="node18" href="$classlab_arbre_a_v_l_1_1_arbre.html#a6def2c8f146c942895b3090104b9ecd7" title="Fonction récursive pour déterminer si un élément est dans l&#39;arbre. " alt="" coords="371,636,504,677"/>
+</map>
