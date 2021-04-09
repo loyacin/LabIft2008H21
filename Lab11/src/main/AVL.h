@@ -73,38 +73,12 @@ private:
 		 *
 		 */
 		Noeud(const E & p_data) :
-				m_gauche(0), m_data(p_data), m_droite(0), m_hauteur(0) {
+				m_gauche(nullptr), m_data(p_data), m_droite(nullptr), m_hauteur(0) {
 		}
 	};
 
 	Noeud * m_racine; /*!< La racine de l'arbre*/
 	long m_cardinalite; /*!< La cardinalité de l'arbre*/
-
-	// Les membres privés
-
-	void _auxCopier(Noeud *, Noeud * &);
-	void _auxDetruire(Noeud * &);
-	void _listerEnOrdre(Noeud *, std::vector<E> &) const;
-	void _listerPreOrdre(Noeud *, std::vector<E> &) const;
-	void _listerPostOrdre(Noeud *, std::vector<E> &) const;
-	void _insererAVL(Noeud * &, const E &);
-	int _hauteur(Noeud * &) const;
-	Noeud* _appartient(Noeud * const &, const E &) const;
-	bool _debalancementAGauche(Noeud * &) const;
-	bool _debalancementADroite(Noeud * &) const;
-	bool _sousArbrePencheAGauche(Noeud * &) const;
-	bool _sousArbrePencheADroite(Noeud * &) const;
-	void _zigZigGauche(Noeud * &);
-	void _zigZagGauche(Noeud * &);
-	void _zigZigDroite(Noeud * &);
-	void _zigZagDroite(Noeud * &);
-	void _enleverAVL(Noeud * &, const E &);
-	bool _aDeuxfils(Noeud * &) const;
-	Noeud * _min(Noeud *) const;
-	int _amplitudeDuDebalancement(Noeud *) const;
-	void _balancerUnNoeud(Noeud * &);
-	void _miseAJourHauteurNoeud(Noeud * &);
-
 };
 
 } //Fin du namespace

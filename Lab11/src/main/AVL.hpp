@@ -23,7 +23,7 @@ namespace labArbreAVL {
  */
 template<typename E>
 Arbre<E>::Arbre() :
-		m_racine(nullptr), m_cardinalite(nullptr) {
+		m_racine(nullptr), m_cardinalite(0) {
 }
 /**
  * \brief Constructeur de copie
@@ -61,7 +61,8 @@ Arbre<E>& Arbre<E>::operator =(const Arbre & p_source) {
  */
 template<typename E>
 Arbre<E>::~Arbre() {
-	_auxDetruire(m_racine);
+    _auxDetruire(this->m_racine);
+    this->m_cardinalite = 0;
 }
 /**
  * \brief Détruire un sous-arbre. Fonction récursive auxiliaire pour le destructeur
@@ -70,12 +71,13 @@ Arbre<E>::~Arbre() {
  */
 template<typename T>
 void Arbre<T>::_auxDetruire(Noeud *& p_arb) {
-	if (p_arb != nullptr) {
-		_auxDetruire(p_arb->m_gauche);
-		_auxDetruire(p_arb->m_droite);
-		delete p_arb;
-		p_arb = nullptr;
-	}
+    if (p_arb != nullptr)
+    {
+        _auxDetruire(p_arb->m_gauche);
+        _auxDetruire(p_arb->m_droite);
+        delete p_arb;
+        p_arb = nullptr;
+    }
 }
 /**
  * \brief Copier deux sous-arbres. Fonction récursive auxiliaire pour le constructeur de copie
@@ -114,6 +116,7 @@ bool Arbre<E>::estVide() const {
  */
 template<typename E>
 void Arbre<E>::verifieInvariant() const {
+    INVARIANT(this->estAVL());
 	INVARIANT(m_cardinalite >= 0);
 }
 /**
@@ -259,6 +262,7 @@ std::vector<E> Arbre<E>::listerParNiveau() const {
  */
 template<typename E>
 void Arbre<E>::insererAVL(const E & p_data) {
+    _insererAVL(this->racine, data);
 }
 
 /**
@@ -269,16 +273,141 @@ void Arbre<E>::insererAVL(const E & p_data) {
  */
 template<typename E>
 void Arbre<E>::_insererAVL(Noeud *& p_arb, const E & p_data) {
+    if (p_arb == nullptr)
+    {
+        p_arb = new Noeud(p_data);
+        this->m_cardinalite++;
+    }
+    else
+    {
+        if (p_data < p_arb->m_data)
+        {
+            _insererAVL(p_arb->m_gauche, p_data);
+        }
+        else if (p_data > p_arb->m_data)
+        {
+            _insererAVL(p_arb->m_droite, p_data);
+        }
+        else
+        {
+            throw std::logic_error("Les duplicats sont interdits.")
+        }
+        balancer(p_arb);
+        mettreAjourHauteur(p_arb);
+    }
+}
+
+template<typename E>
+void Arbre<E>::balancer(Noeud *& p_arb)
+{
+    if (estDebalanceGauche(p_arb))
+    {
+        if (estPencheADroite(p_arb->m_gauche))
+        {
+            zigZagGauche(p_arb);
+        }
+        else
+        {
+            zigZigGauche(p_arb);
+        }
+    }
+    else if (estDelanceDroite(p_arb))
+    {
+        if (estPencheAGauche(p_arb->m_droite))
+        {
+            zigZagDroit(p_arb);
+        }
+        else
+        {
+            zigZigDroit(p_arb);
+        }
+    }
+}
+
+template<typename E>
+bool Arbre<E>::estDebalanceGauche(const Noeud *& p_arb) const
+{
+    return p_arb != nullptr && 1 < hauteur(p_arb->m_gauche) - hauteur(p_arb->m_droite);
+}
+
+template<typename E>
+int Arbre<E>::hauteur(const Noeud *& p_arb) const
+{
+    return (p_arb == nullptr) ? -1 : p_arb->m_hauteur;
+}
+
+template<typename E>
+bool Arbre<E>::estDebalanceDroite(const Noeud *& p_arb) const
+{
+    return p_arb != nullptr && 1 < hauteur(p_arb->m_droite) - hauteur(p_arb->m_gauche);
+}
+
+template<typename E>
+bool Arbre<E>::estPencheADroite(const Noeud *& p_arb) const
+{
+    return p_arb != nullptr && hauteur(p_arb->m_gauche) < hauteur(p_arb->m_droite);
+}
+
+template<typename E>
+bool Arbre<E>::estPencheAGauche(const Noeud *& p_arb) const
+{
+    return p_arb != nullptr && hauteur(p_arb->m_droite) < hauteur(p_arb->m_gauche);
+}
+
+template<typename E>
+void Arbre<E>::mettreAjourHauteur(Noeud *& p_arb)
+{
+    if (p_arb != nullptr)
+    {
+        p_arb->m_hauteur = 1 + std::max(hauteur(p_arb->m_gauche), hauteur(p_arb->m_droite));
+    }
+}
+
+template<typename E>
+void Arbre<E>::zigZigDroit(Noeud *& p_arb)
+{
+    Noeud* sentinelle = p_arb->m_droite;
+    p_arb->m_droite = sentinelle->m_gauche;
+    sentinelle->m_gauche = p_arb;
+    mettreAjourHauteur(p_arb);
+    mettreAjourHauteur(sentinelle);
+    p_arb = sentinelle;
+}
+
+template<typename E>
+void Arbre<E>::zigZigGauche(Noeud *& p_arb)
+{
+    Noeud* sentinelle = p_arb->m_gauche;
+    p_arb->m_gauche = sentinelle->m_droite;
+    sentinelle->m_droite = p_arb;
+    mettreAjourHauteur(p_arb);
+    mettreAjourHauteur(sentinelle);
+    p_arb = sentinelle;
+}
+
+template<typename E>
+void Arbre<E>::zigZagDroit(Noeud *& p_arb)
+{
+    zigZigGauche(p_arb->m_droite);
+    zigZigDroit(p_arb);
+}
+
+template<typename E>
+void Arbre<E>::zigZagGauche(Noeud *& p_arb)
+{
+    zigZigDroit(p_arb->gauche);
+    zigZigGauche(p_arb);
 }
 
 /**
  * \brief Enlever un élément en gardant l'arbre AVL
  * \param[in] p_data L'élément à enlever
- * \pre L'élément est pas dans l'arbre
+ * \pre L'élément est dans l'arbre
  * \post L'élément est enlevé
  */
 template<typename E>
 void Arbre<E>::enleverAVL(const E & p_data) {
+    _enleverAVL(this->m_racine, p_data);
 }
 
 /**
@@ -289,6 +418,45 @@ void Arbre<E>::enleverAVL(const E & p_data) {
  */
 template<typename E>
 void Arbre<E>::_enleverAVL(Noeud *& p_arb, const E& p_data) {
+    if (p_arb = nullptr)
+    {
+        std::logic_error("Tentative d'enlever une donnée absente.");
+    }
+    if (p_data < p_arb->m_data)
+    {
+        _enleverAVL(p_arb->m_gauche, p_data);
+    }
+    else if (p_data > p_arb->m_data)
+    {
+        _enleverAVL(p_arb->m_droite, p_data);
+    }
+    else if (p_arb->m_gauche != nullptr && p_arb->m_droite != nullptr)
+    {
+        enleverSuccMinDroite(p_arb);
+    }
+    else
+    {
+        Noeud* sentinelle = p_arb;
+        p_arb = (p_arb->m_gauche == nullptr) ? p_arb->m_droite : p_arb->m_gauche;
+        delete sentinelle;
+        this->m_cardinalite--;
+    }
+    balancer(p_arb);
+    miseAJourHauteur(p_arb);
+}
+
+template<typename E>
+void Arbre<E>::enleverSuccMinDroite(Noeud *& p_arb)
+{
+    Noeud * minimum = p_arb->m_droite;
+    Noeud * parent = p_arb;
+    while (minimum->gauche != nullptr)
+    {
+        parent = minimum;
+        minimum = minimum->m_gauche;
+    }
+    p_arb->m_data = minimum->m_data;
+    _enleverAVL(minimum, minimum->data);
 }
 
 /**
@@ -298,6 +466,19 @@ void Arbre<E>::_enleverAVL(Noeud *& p_arb, const E& p_data) {
  */
 template<typename E>
 bool Arbre<E>::estAVL() const {
+    return _estAVL(this->m_racine);
+}
+
+template<typename E>
+bool Arbre<E>::estAVL(const Noeud *& p_arb) const {
+    bool estAVL = p_arb == nullptr;
+    if (!estAVL)
+    {
+        estAVL = std::abs(hauteur(p_arb->m_gauche) - hauteur(p_arb->droite)) <= 1
+                 && estAVL(p_arb->m_gauche)
+                 && estAVL(p_arb->m_droite);
+    }
+    return estAVL;
 }
 
 } //Fin du namespace
