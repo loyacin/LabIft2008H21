@@ -1,0 +1,10 @@
+<map id="TriTesteur.cpp" name="TriTesteur.cpp">
+<area shape="rect" id="node3" href="$_tri_8h.html" title="Tri.h" alt="" coords="531,80,577,107"/>
+<area shape="rect" id="node4" href="$_tri_bulle_8hpp.html" title="Implémentation du tri bulle. " alt="" coords="509,155,599,181"/>
+<area shape="rect" id="node6" href="$_tri_fusion_8hpp.html" title="Implémentation du tri fusion. " alt="" coords="624,155,724,181"/>
+<area shape="rect" id="node7" href="$_tri_insertion_8hpp.html" title="Implémentation du tri insertion. " alt="" coords="248,155,359,181"/>
+<area shape="rect" id="node8" href="$_tri_par_tas_8hpp.html" title="TriParTas.hpp" alt="" coords="5,155,108,181"/>
+<area shape="rect" id="node10" href="$_tri_rapide_8hpp.html" title="Implémentation du tri rapide. " alt="" coords="383,155,485,181"/>
+<area shape="rect" id="node11" href="$_tri_selection_8hpp.html" title="Implémentation du tri sélection. " alt="" coords="749,155,863,181"/>
+<area shape="rect" id="node13" href="$_tri_shell_8hpp.html" title="Implémentation du tri shell. " alt="" coords="133,155,223,181"/>
+</map>

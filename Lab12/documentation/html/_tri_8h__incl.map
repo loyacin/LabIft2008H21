@@ -1,0 +1,9 @@
+<map id="Tri.h" name="Tri.h">
+<area shape="rect" id="node2" href="$_tri_bulle_8hpp.html" title="Implémentation du tri bulle. " alt="" coords="390,80,481,107"/>
+<area shape="rect" id="node4" href="$_tri_fusion_8hpp.html" title="Implémentation du tri fusion. " alt="" coords="5,80,105,107"/>
+<area shape="rect" id="node5" href="$_tri_insertion_8hpp.html" title="Implémentation du tri insertion. " alt="" coords="129,80,240,107"/>
+<area shape="rect" id="node6" href="$_tri_par_tas_8hpp.html" title="TriParTas.hpp" alt="" coords="620,80,723,107"/>
+<area shape="rect" id="node8" href="$_tri_rapide_8hpp.html" title="Implémentation du tri rapide. " alt="" coords="265,80,366,107"/>
+<area shape="rect" id="node9" href="$_tri_selection_8hpp.html" title="Implémentation du tri sélection. " alt="" coords="747,80,862,107"/>
+<area shape="rect" id="node11" href="$_tri_shell_8hpp.html" title="Implémentation du tri shell. " alt="" coords="505,80,595,107"/>
+</map>
