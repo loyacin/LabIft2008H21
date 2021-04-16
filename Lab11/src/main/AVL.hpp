@@ -449,14 +449,12 @@ template<typename E>
 void Arbre<E>::enleverSuccMinDroite(Noeud *& p_arb)
 {
     Noeud * minimum = p_arb->m_droite;
-    Noeud * parent = p_arb;
     while (minimum->gauche != nullptr)
     {
-        parent = minimum;
         minimum = minimum->m_gauche;
     }
     p_arb->m_data = minimum->m_data;
-    _enleverAVL(minimum, minimum->data);
+    _enleverAVL(&minimum, minimum->data);
 }
 
 /**
