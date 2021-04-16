@@ -12,8 +12,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # Source inclusion
 ########################
 set(SOURCE_FILES
-        src/main/AVL.hpp
-        src/main/AVL.h
+        src/main/Tri.h
+        src/main/TriBulle.hpp
+        src/main/TriFusion.hpp
+        src/main/TriInsertion.hpp
+        src/main/TriParTas.hpp
+        src/main/TriRapide.hpp
+        src/main/TriSelection.hpp
+        src/main/TriShell.hpp
         src/main/main.cpp)
 add_executable(Sort ${SOURCE_FILES})
 

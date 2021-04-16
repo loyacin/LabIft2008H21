@@ -1,7 +1,15 @@
 set(SOURCE_FILES
-        ../main/AVL.hpp
-        AVLTesteur.cpp)
-add_executable(avlTreeTest ${SOURCE_FILES})
+        ../main/Tri.h
+        ../main/TriBulle.hpp
+        ../main/TriFusion.hpp
+        ../main/TriInsertion.hpp
+        ../main/TriParTas.hpp
+        ../main/TriRapide.hpp
+        ../main/TriSelection.hpp
+        ../main/TriShell.hpp
+        ../main/main.cpp
+        TriTesteur.cpp)
+add_executable(sortTest ${SOURCE_FILES})
 
-add_test(AVLTesteur.cpp avlTreeTest)
-target_link_libraries(avlTreeTest ${GTEST_LIBRARIES})
+add_test(TriTesteur.cpp sortTest)
+target_link_libraries(sortTest ${GTEST_LIBRARIES})
